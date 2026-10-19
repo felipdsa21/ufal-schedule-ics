@@ -4,7 +4,7 @@
 # dependencies = [
 #     "beautifulsoup4>=4.15.0",
 #     "icalendar>=7.3.0",
-#     "pymupdf>=1.28.2",
+#     "pymupdf>=1.28.2,<2",
 # ]
 # ///
 

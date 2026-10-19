@@ -6,7 +6,7 @@ requires-python = ">=3.14"
 dependencies = [
     "beautifulsoup4>=4.15.0",
     "icalendar>=7.3.0",
-    "pymupdf>=1.28.2",
+    "pymupdf>=1.28.2,<2",
 ]
 
 [project.scripts]
@@ -20,8 +20,8 @@ build-backend = "setuptools.build_meta"
 dev = [
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
-    "ruff>=0.16.10",
-    "ty>=0.0.84",
+    "ruff>=0.17.1",
+    "ty>=0.0.89",
 ]
 
 [tool.coverage.run]
