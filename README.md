@@ -11,26 +11,25 @@ Recebe como entrada um PDF ou uma página HTML do "Atestado de Matrícula" emiti
 
 ## Instalação
 
-Com o [uv](https://docs.astral.sh/uv/):
+Com o [uv](https://docs.astral.sh/uv/), crie o ambiente e ative-o para ter o comando `ufal-schedule-ics` disponível:
 
 ```sh
 uv sync
+source .venv/bin/activate  # no Windows: .venv\Scripts\activate
 ```
 
-## Uso
+Os exemplos abaixo supõem o ambiente ativado. Sem ativá-lo, prefixe os comandos com `uv run`.
 
-### Com uv
-
-Execute o script diretamente. Não é preciso instalar nada à parte, pois o `uv` resolve as dependências automaticamente a partir dos metadados incluídos no próprio script:
+Também é possível executar o script sem instalar nada, pois o `uv` resolve as dependências a partir dos metadados incluídos nele:
 
 ```sh
 uv run src/ufal_schedule_ics.py <arquivo_de_entrada> > schedule.ics
 ```
 
-Ou, após rodar `uv sync`, usando o comando instalado:
+## Uso
 
 ```sh
-uv run ufal-schedule-ics <arquivo_de_entrada> > schedule.ics
+ufal-schedule-ics <arquivo_de_entrada> > schedule.ics
 ```
 
 ### Entrada
@@ -39,7 +38,7 @@ uv run ufal-schedule-ics <arquivo_de_entrada> > schedule.ics
 - Use `-` para ler a partir da entrada padrão:
 
 ```sh
-uv run ufal-schedule-ics - < atestado.pdf > schedule.ics
+ufal-schedule-ics - < atestado.pdf > schedule.ics
 ```
 
 ### Saída
@@ -49,13 +48,13 @@ Por padrão, o calendário (`.ics`) é escrito na saída padrão. Redirecione-o 
 Os horários das aulas são gravados no fuso `America/Maceio`, então aparecem corretamente mesmo em um aparelho configurado em outro fuso. Para usar outro fuso, passe um nome IANA com `-t`/`--timezone`:
 
 ```sh
-uv run ufal-schedule-ics --timezone America/Recife <arquivo_de_entrada> > schedule.ics
+ufal-schedule-ics --timezone America/Recife <arquivo_de_entrada> > schedule.ics
 ```
 
 Para conferir os dados identificados em vez de gerar um calendário, use `-r`/`--print-record`, que imprime um único objeto JSON com o período letivo (`period`), os dados do aluno (`student`) e a lista de matrículas (`enrollments`):
 
 ```sh
-uv run ufal-schedule-ics --print-record <arquivo_de_entrada>
+ufal-schedule-ics --print-record <arquivo_de_entrada>
 ```
 
 ## Desenvolvimento
@@ -65,5 +64,5 @@ O comportamento esperado do programa está descrito em [docs/especificacao.md](d
 Para rodar os testes com a verificação de cobertura, que exige 100% de linhas e de ramos:
 
 ```sh
-uv run pytest --cov
+pytest --cov
 ```
