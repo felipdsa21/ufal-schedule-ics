@@ -15,6 +15,7 @@ from atestado_fixtures import (
     build_atestado_html,
     build_atestado_pdf,
 )
+from pdf_rendering import render_pdf
 
 from ufal_schedule_ics import RawPeriod, extract_raw_record, normalize_whitespace
 
@@ -70,6 +71,12 @@ class TestIdentification:
         # IDENT-10
         data = b"<html><body><h2>Portal do Discente</h2><p>Turmas</p></body></html>"
         with pytest.raises(ValueError, match="#identificacao"):
+            extract_raw_record(data)
+
+    def test_pdf_without_identification_raises(self) -> None:
+        # IDENT-10
+        data = render_pdf("<h2>Portal do Discente</h2><p>Turmas</p>")
+        with pytest.raises(ValueError, match="'Período Letivo:'"):
             extract_raw_record(data)
 
     def test_renamed_identification_label_raises(

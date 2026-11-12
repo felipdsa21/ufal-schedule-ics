@@ -152,7 +152,7 @@ HTML e PDF procuram os rótulos de jeitos diferentes, mas interpretam os valores
 | IDENT-04 | Um hífen sem espaços faz parte do nome do curso (`LETRAS-LIBRAS`). | P |
 | IDENT-07 | Um nome de aluno quebrado em duas linhas no PDF é lido inteiro. | R |
 | IDENT-09 | Um curso sem o separador ` - ` é rejeitado (`course`). | V |
-| IDENT-10 | Uma identificação ausente é rejeitada: HTML sem `#identificacao` (outra página do portal), rótulo ausente ou renomeado no HTML (`table cell for 'Matrícula:'`) ou no PDF (`'Matrícula:'`). | V |
+| IDENT-10 | Uma identificação ausente é rejeitada: outra página do portal, sem `#identificacao` no HTML ou sem nenhum rótulo no PDF (`'Período Letivo:'`); rótulo ausente ou renomeado no HTML (`table cell for 'Matrícula:'`) ou no PDF (`'Matrícula:'`). | V |
 | IDENT-12 | O valor de `Período Letivo:`, com os espaços normalizados, segue exatamente `AAAA.S (dd/mm/aaaa à dd/mm/aaaa)`; qualquer outro é rejeitado (`period`). Uma leitura mais tolerante transformaria `2026-2 (…)` no período `2`, que iria para o título e o UID de todos os eventos. | V |
 
 ### 4.3 Atestado: linhas de matrícula (`ROW`)

@@ -32,7 +32,7 @@ NAMESPACE_UID = uuid.UUID("3ce34002-08ef-49ef-a212-ce9c9a503d99")
 WEEKDAY_ABBREVS = "MO", "TU", "WE", "TH", "FR", "SA", "SU"
 
 COURSE_RE = re.compile(r"(.+?)\s+-\s", re.DOTALL)
-FIELD_LABEL_RE = re.compile(r"^[^\n:]+:(?!\S)", re.MULTILINE)
+FIELD_LABEL_RE = re.compile(r"^([^\n:]+:)(?!\S)", re.MULTILINE)
 MULTIPLE_PROFESSORS_RE = re.compile(r",|\be\b")
 PERIOD_DATES_RE = re.compile(
     r"(\d{4}\.\d) \((\d{2}/\d{2}/\d{4}) à (\d{2}/\d{2}/\d{4})\)"
@@ -311,7 +311,7 @@ def extract_raw_record_pdf_dispatch(data: bytes) -> RawRecord:
 
 
 def extract_sie_record(page: pymupdf.Page, text: str) -> SieRecord:
-    tabs = list(page.find_tables(use_layout=False))
+    tabs = page.find_tables(use_layout=False).tables
     if len(tabs) < 2:
         raise ValueError("Could not extract tables")
 
@@ -457,13 +457,11 @@ def extract_raw_record_pdf(page: pymupdf.Page, text: str) -> RawRecord:
 
 
 def split_labeled_fields(text: str) -> dict[str, str]:
-    labels = list(FIELD_LABEL_RE.finditer(text))
-    ends = [label.start() for label in labels[1:]] + [len(text)]
+    parts = FIELD_LABEL_RE.split(text)[1:]
     fields: dict[str, str] = {}
 
-    for label, end in zip(labels, ends, strict=True):
-        key = normalize_whitespace(label.group())
-        fields.setdefault(key, text[label.end() : end].strip())
+    for label, value in itertools.batched(parts, 2, strict=True):
+        fields.setdefault(normalize_whitespace(label), value.strip())
 
     return fields
 
@@ -481,7 +479,7 @@ def parse_identification(
     return period, StudentInfo(id_, name, course)
 
 
-def get_column_indexes(header: abc.Sequence[str]) -> Columns[int]:
+def get_column_indexes(header: abc.Iterable[str]) -> Columns[int]:
     columns = {name: i for i, name in enumerate(header)}
     return Columns(
         *(require(columns.get(name), f"column {name!r}") for name in COLUMN_NAMES)
@@ -550,7 +548,7 @@ def extract_raw_record_html(data: bytes) -> RawRecord:
 
     table = require(soup.select_one("#matriculas"), "#matriculas")
     body = require(table.select_one(":scope > tbody"), "#matriculas > tbody")
-    header = tuple(normalize_whitespace(th.get_text()) for th in table.select("th"))
+    header = (normalize_whitespace(th.get_text()) for th in table.select("th"))
     columns = get_column_indexes(header)
     enrollments: list[RawEnrollment] = []
 
