@@ -6,7 +6,7 @@ Recebe como entrada um PDF ou uma página HTML do "Atestado de Matrícula" emiti
 
 ## Requisitos
 
-- Python 3.14+
+- Python 3.15+
 - [uv](https://docs.astral.sh/uv/) (recomendado) ou `pip`
 
 ## Instalação

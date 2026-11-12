@@ -2,7 +2,7 @@
 name = "ufal-schedule-ics"
 version = "0.1.0"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.15"
 dependencies = [
     "beautifulsoup4>=4.15.0",
     "icalendar>=7.3.0",
@@ -18,10 +18,10 @@ build-backend = "setuptools.build_meta"
 
 [dependency-groups]
 dev = [
-    "pytest>=9.1.1",
+    "pytest>=9.2.0",
     "pytest-cov>=7.1.0",
-    "ruff>=0.17.1",
-    "ty>=0.0.89",
+    "ruff>=0.17.5",
+    "ty>=0.0.102",
 ]
 
 [tool.coverage.run]
