@@ -311,7 +311,7 @@ def extract_raw_record_pdf_dispatch(data: bytes) -> RawRecord:
 
 
 def extract_sie_record(page: pymupdf.Page, text: str) -> SieRecord:
-    tabs = list(page.find_tables())
+    tabs = list(page.find_tables(use_layout=False))
     if len(tabs) < 2:
         raise ValueError("Could not extract tables")
 
@@ -426,7 +426,7 @@ def extract_raw_record_pdf(page: pymupdf.Page, text: str) -> RawRecord:
         lambda label: require(fields.get(label), repr(label))
     )
 
-    tab = require(next(iter(page.find_tables()), None), "tables")
+    tab = require(next(iter(page.find_tables(use_layout=False)), None), "tables")
     columns = get_column_indexes(tab.header.names)
     enrollments: list[RawEnrollment] = []
 

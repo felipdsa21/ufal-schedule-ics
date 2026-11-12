@@ -272,6 +272,6 @@ class TestPdfFixture:
     ) -> None:
         # ROW-03, ROW-04, ROW-09
         with pymupdf.open(stream=build_atestado_pdf(rows)) as doc:
-            table = next(iter(doc[0].find_tables()))
+            table = next(iter(doc[0].find_tables(use_layout=False)))
             cells = [row[column] or "" for row in table.extract()[1:]]
         assert any(wrapped in cell for cell in cells)
