@@ -132,18 +132,20 @@ CORRECT_SPELLINGS = (
     "Vitório",
 )
 
-SHIFTS = {
+SHIFTS = frozendict({
     "M": (datetime.time(7, 30), 6),
     "T": (datetime.time(13, 30), 6),
     "N": (datetime.time(19, 0), 4),
-}
+})
 
-DATE_CORRECTIONS = {datetime.date(2025, 11, 19): datetime.date(2025, 11, 28)}
+DATE_CORRECTIONS = frozendict({
+    datetime.date(2025, 11, 19): datetime.date(2025, 11, 28)
+})
 
-SIE_PERIOD_DATES = {
+SIE_PERIOD_DATES = frozendict({
     "2023.1": ("26/06/2023", "25/10/2023"),
     "2023.2": ("13/11/2023", "05/04/2024"),
-}
+})
 
 
 def slot_to_time(shift_start: datetime.time, slot: int, is_end: bool) -> datetime.time:
@@ -158,19 +160,23 @@ def strip_accents(value: str) -> str:
     return "".join(c for c in normalized if unicodedata.category(c) != "Mn")
 
 
-CASE_CORRECTIONS = {word.title(): word for word in CORRECT_CASES}
+CASE_CORRECTIONS: frozendict[str, str] = frozendict({
+    word.title(): word for word in CORRECT_CASES
+})
 
-SLOT_TIMES = {
+SLOT_TIMES = frozendict({
     (shift, slot): (slot_to_time(start, slot, False), slot_to_time(start, slot, True))
     for shift, (start, count) in SHIFTS.items()
     for slot in range(1, count + 1)
-}
+})
 
-SLOTS_BY_TIME_RANGE = {
+SLOTS_BY_TIME_RANGE = frozendict({
     f"{start:%H:%M} - {end:%H:%M}": key for key, (start, end) in SLOT_TIMES.items()
-}
+})
 
-SPELLING_CORRECTIONS = {strip_accents(word): word for word in CORRECT_SPELLINGS}
+SPELLING_CORRECTIONS = frozendict({
+    strip_accents(word): word for word in CORRECT_SPELLINGS
+})
 
 
 @dataclasses.dataclass(slots=True)
