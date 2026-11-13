@@ -770,7 +770,7 @@ def parse_args() -> Args:
         help=f"IANA time zone of the class times (default: {DEFAULT_TIMEZONE})",
     )
     parser.add_argument(
-        "in_path", metavar="input_file", help="input file (use '-' for standard input)"
+        "in_path", metavar="input_file", help="input file (use `-` for standard input)"
     )
     return parser.parse_args(namespace=Args())
 
