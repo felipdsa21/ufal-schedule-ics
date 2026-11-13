@@ -1,8 +1,8 @@
-import dataclasses
+lazy import dataclasses
 
-import pymupdf
-import pytest
-from atestado_fixtures import (
+lazy import pymupdf
+lazy import pytest
+lazy from atestado_fixtures import (
     COMP382,
     COMP388,
     COMP393,
@@ -15,9 +15,9 @@ from atestado_fixtures import (
     build_atestado_html,
     build_atestado_pdf,
 )
-from pdf_rendering import render_pdf
+lazy from pdf_rendering import render_pdf
 
-from ufal_schedule_ics import RawPeriod, extract_raw_record, normalize_whitespace
+lazy from ufal_schedule_ics import RawPeriod, extract_raw_record, normalize_whitespace
 
 
 class TestIdentification:

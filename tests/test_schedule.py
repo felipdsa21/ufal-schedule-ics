@@ -1,9 +1,16 @@
-import datetime
+lazy import datetime
 
-import pytest
-from comprovante_fixtures import FRIDAY, MONDAY, SATURDAY, THURSDAY, TUESDAY, WEDNESDAY
+lazy import pytest
+lazy from comprovante_fixtures import (
+    FRIDAY,
+    MONDAY,
+    SATURDAY,
+    THURSDAY,
+    TUESDAY,
+    WEDNESDAY,
+)
 
-from ufal_schedule_ics import (
+lazy from ufal_schedule_ics import (
     SLOT_TIMES,
     SLOTS_BY_TIME_RANGE,
     TIME_CODE_RE,

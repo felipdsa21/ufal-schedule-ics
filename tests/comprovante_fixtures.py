@@ -1,6 +1,6 @@
-from pdf_rendering import render_pdf
+lazy from pdf_rendering import render_pdf
 
-from ufal_schedule_ics import SieSubjectSchedule
+lazy from ufal_schedule_ics import SieSubjectSchedule
 
 MONDAY = "2 - Segunda-feira"
 TUESDAY = "3 - Terça-feira"

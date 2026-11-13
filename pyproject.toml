@@ -38,8 +38,11 @@ preview = true
 skip-magic-trailing-comma = true
 
 [tool.ruff.lint]
-extend-select = ["ANN", "ARG", "C4", "I", "PLW", "RUF", "S", "UP"]
+extend-select = ["ANN", "ARG", "C4", "PLW", "RUF", "S", "UP", "lazy-import-mismatch"]
 preview = true
+
+[tool.ruff.lint.flake8-tidy-imports]
+require-lazy = "all"
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["assert"]

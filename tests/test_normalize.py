@@ -1,10 +1,10 @@
-import dataclasses
-import datetime
+lazy import dataclasses
+lazy import datetime
 
-import pytest
-from atestado_fixtures import COMP385, COMP388, COMP393, COMP397, BuildAtestado
+lazy import pytest
+lazy from atestado_fixtures import COMP385, COMP388, COMP393, COMP397, BuildAtestado
 
-from ufal_schedule_ics import (
+lazy from ufal_schedule_ics import (
     CORRECT_CASES,
     CORRECT_SPELLINGS,
     Enrollment,

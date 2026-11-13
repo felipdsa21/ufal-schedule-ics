@@ -8,23 +8,23 @@
 # ]
 # ///
 
-import argparse
-import dataclasses
-import datetime
-import enum
-import itertools
-import json
-import re
-import sys
-import typing
-import unicodedata
-import uuid
-import zoneinfo
-from collections import abc
+lazy import argparse
+lazy import dataclasses
+lazy import datetime
+lazy import enum
+lazy import itertools
+lazy import json
+lazy import re
+lazy import sys
+lazy import typing
+lazy import unicodedata
+lazy import uuid
+lazy import zoneinfo
+lazy from collections import abc
 
-import bs4
-import icalendar
-import pymupdf
+lazy import bs4
+lazy import icalendar
+lazy import pymupdf
 
 DEFAULT_TIMEZONE = "America/Maceio"
 KNOWN_STATUSES = "INDEFERIDO", "MATRICULADO"
@@ -297,6 +297,8 @@ def extract_raw_record(data: bytes) -> RawRecord:
 
 
 def extract_raw_record_pdf_dispatch(data: bytes) -> RawRecord:
+    pymupdf.no_recommend_layout()
+
     with pymupdf.open(stream=data, filetype="pdf") as doc:
         page = doc[0]
         text = page.get_text()
@@ -769,9 +771,6 @@ def parse_args() -> Args:
 
 def main() -> None:
     args = parse_args()
-
-    pymupdf.no_recommend_layout()
-
     raw_record = extract_raw_record(read_input(args.in_path))
     record = normalize_raw_record(raw_record)
 

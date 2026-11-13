@@ -1,8 +1,8 @@
-import dataclasses
-import typing
-from collections import abc
+lazy import dataclasses
+lazy import typing
+lazy from collections import abc
 
-from pdf_rendering import render_pdf
+lazy from pdf_rendering import render_pdf
 
 type BuildAtestado = abc.Callable[..., bytes]
 

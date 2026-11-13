@@ -1,5 +1,5 @@
-import pathlib
-import re
+lazy import pathlib
+lazy import re
 
 TESTS = pathlib.Path(__file__).parent
 SPEC = (TESTS.parent / "docs" / "especificacao.md").read_text(encoding="utf-8")

@@ -1,10 +1,10 @@
-import dataclasses
-import datetime
-import zoneinfo
+lazy import dataclasses
+lazy import datetime
+lazy import zoneinfo
 
-import icalendar
+lazy import icalendar
 
-from ufal_schedule_ics import Enrollment, build_calendar, generate_events
+lazy from ufal_schedule_ics import Enrollment, build_calendar, generate_events
 
 TZ = zoneinfo.ZoneInfo("America/Maceio")
 

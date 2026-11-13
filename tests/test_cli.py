@@ -1,19 +1,19 @@
-import datetime
-import io
-import json
-import pathlib
-import types
-import zoneinfo
+lazy import datetime
+lazy import io
+lazy import json
+lazy import pathlib
+lazy import types
+lazy import zoneinfo
 
-import pytest
-from atestado_fixtures import (
+lazy import pytest
+lazy from atestado_fixtures import (
     COMP401,
     BuildAtestado,
     build_atestado_html,
     build_atestado_pdf,
 )
 
-from ufal_schedule_ics import (
+lazy from ufal_schedule_ics import (
     Enrollment,
     Period,
     Record,

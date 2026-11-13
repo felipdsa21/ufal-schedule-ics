@@ -1,4 +1,4 @@
-import pymupdf
+lazy import pymupdf
 
 
 def render_pdf(

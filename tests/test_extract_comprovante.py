@@ -1,6 +1,6 @@
-import pytest
-from atestado_fixtures import LONG_STUDENT_NAME
-from comprovante_fixtures import (
+lazy import pytest
+lazy from atestado_fixtures import LONG_STUDENT_NAME
+lazy from comprovante_fixtures import (
     FRIDAY,
     MONDAY,
     SATURDAY,
@@ -10,7 +10,7 @@ from comprovante_fixtures import (
     build_comprovante_pdf,
 )
 
-from ufal_schedule_ics import (
+lazy from ufal_schedule_ics import (
     SieSubjectSchedule,
     extract_raw_record,
     normalize_whitespace,
