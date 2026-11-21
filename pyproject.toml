@@ -1,6 +1,7 @@
 [project]
 name = "ufal-schedule-ics"
 version = "0.1.0"
+description = "Converte o atestado de matrícula do SIGAA (UFAL) em um calendário .ics"
 readme = "README.md"
 requires-python = ">=3.15"
 dependencies = [
